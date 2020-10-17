@@ -20,6 +20,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
+
+    'cookbook.apps.CookbookConfig',
     
     'django.contrib.admin',
     'django.contrib.auth',

@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="header">
-    <span class="logo"><a href="#">COOKBOOK</a></span>
+    <span class="logo"><a href="{% url 'cookbook' %}">COOKBOOK</a></span>
 
     <ul class="menu">
         <li {% if section == "user_cookbook" %}class="selected"{% endif %}>
@@ -24,8 +24,7 @@
     </span>
 </div>
 <div id="content">
-    {% block content %}
-    {% endblock %}
+    {% block content %}{% endblock %}
 </div>
 </body>
 </html>

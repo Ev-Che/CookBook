@@ -4,11 +4,15 @@
 
 {% block content %}
     <h1>Log-in</h1>
+    <p>Please, use the following form to log-in.
+        If you don't have an account <a href="{% url 'register' %}">Register here</a></p>
+
     {% if section == 'no_user' %}
-        <p>Неправильно введены логин или пароль.</p>
-    {% else %}
-        <p>Please, use the following form to log-in:</p>
+        <div class="error_list">
+            <p class="error_list">Invalid login or password.</p>
+        </div>
     {% endif %}
+
     <form action="." method="post">
         {{ form.as_p }}
         {% csrf_token %}
