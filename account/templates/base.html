@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+    <span class="logo"><a href="#">COOKBOOK</a></span>
+
+    <ul class="menu">
+        <li {% if section == "user_cookbook" %}class="selected"{% endif %}>
+            <a href="{% url "user_cookbook" %}">My cookbook</a>
+        </li>
+    </ul>
+    <span class="user">
+    {% if request.user.is_authenticated %}
+        Hello {{ request.user.first_name }},
+        <a href="{% url "logout" %}">Logout</a>
+    {% else %}
+        <a href="{% url "login" %}">Log-in</a>
+    {% endif %}
+    </span>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
