@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Successfully{% endblock %}
+
+{% block content %}
+    <h1>Your recipe has been added!</h1>
+    <p>You can watch new recipe in
+        <a href="{% url 'cookbook:user_cookbook' %}">your cookbook</a>.
+    </p>
+{% endblock %}

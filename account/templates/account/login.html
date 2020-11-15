@@ -5,7 +5,7 @@
 {% block content %}
     <h1>Log-in</h1>
     <p>Please, use the following form to log-in.
-        If you don't have an account <a href="{% url 'register' %}">Register here</a></p>
+        If you don't have an account <a href="{% url 'account:register' %}">Register here</a></p>
 
     {% if section == 'no_user' %}
         <div class="error_list">

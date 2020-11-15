@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ recipe.title }}</h1>
+    <p class="date">
+        Published {{ recipe.publish }} by {{ recipe.author }}
+    </p>
+    <img src="{{ recipe.photo.url }}" alt="">
+    {{ recipe.body|linebreaks }}
+    {% if recipe.author == request.user %}
+        <table>
+        <tr>
+            <td><a href="{% url 'cookbook:edit_recipe' recipe.id %}">Edit recipe</a></td>
+            <td><p>/</p></td>
+            <td><a href="{% url 'cookbook:delete_recipe' recipe.id %}">Delete</a></td>
+        </tr>
+        </table>
+    {% endif %}
+{% endblock %}

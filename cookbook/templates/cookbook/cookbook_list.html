@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}CookBook{% endblock %}
+
+{% block content %}
+    <h1>Welcome to cookbook!</h1>
+    {% for recipe in recipes %}
+        <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
+        <p class="date">
+            Published {{ recipe.publish }} by {{ recipe.author }}
+        </p>
+        <img src='{{ recipe.photo.url }}' class="photo">
+        {{ recipe.body|truncatewords:30|linebreaks }}
+    {% endfor %}
+
+    {% include 'pagination.html' with page=page_obj %}
+{% endblock %}

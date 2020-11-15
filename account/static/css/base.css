@@ -10,6 +10,18 @@ p {
     line-height: 1.8;
 }
 
+p.date {
+    color:#ccc;
+    font-family: georgia, serif;
+    font-size: 12px;
+    font-style: italic;
+}
+
+img.photo {
+    width: 100px;
+    height: 100px;
+}
+
 a {
     color:#12c064;
     text-decoration:none;
@@ -273,3 +285,4 @@ img.user-detail {
     font-style:italic;
     color:#ccc;
 }
+

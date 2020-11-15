@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -112,6 +113,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'user_cookbook'
-LOGIN_URL = 'login'
-LOGOUT_REDIRECT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'cookbook:user_cookbook'
+LOGIN_URL = 'account:login'
+LOGOUT_REDIRECT_URL = 'account:logout'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+

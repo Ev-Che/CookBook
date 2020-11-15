@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Your cookbook{% endblock %}
+
+{% block content %}
+    <h1>Cookbook</h1>
+    <p>Добро пожаловать в вашу книгу!</p>
+    {% for recipe in user_recipes %}
+        <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
+        <p class="date">
+            Published {{ recipe.publish }}
+        </p>
+        <img src='{{ recipe.photo.url }}' class="photo">
+        {{ recipe.body|truncatewords:30|linebreaks }}
+    {% endfor %}
+{% endblock %}

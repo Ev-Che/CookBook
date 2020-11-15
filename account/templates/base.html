@@ -7,22 +7,43 @@
 </head>
 <body>
 <div id="header">
-    <span class="logo"><a href="{% url 'cookbook' %}">COOKBOOK</a></span>
+    <span class="logo"><a href="{% url 'cookbook:recipe_list' %}">COOKBOOK</a></span>
 
     <ul class="menu">
         <li {% if section == "user_cookbook" %}class="selected"{% endif %}>
-            <a href="{% url "user_cookbook" %}">My cookbook</a>
+            <a href="{% url 'cookbook:user_cookbook' %}">My cookbook</a>
         </li>
+        <li {% if section == "search" %}class="selected"{% endif %}>
+            <a href="{% url 'cookbook:recipe_search' %}">Search</a>
+        </li>
+
+        {% if request.user.is_authenticated %}
+            <li {% if section == 'user_add_recipe' %} class="selected" {% endif %}>
+                <a href="{% url 'cookbook:add_recipe' %}">Add recipe</a>
+            </li>
+        {% endif %}
     </ul>
     <span class="user">
     {% if request.user.is_authenticated %}
         Hello {{ request.user.first_name }},
-        <a href="{% url "logout" %}">Logout</a>
+        <a href="{% url "account:logout" %}">Logout</a>
     {% else %}
-        <a href="{% url "login" %}">Log-in</a>
+        <a href="{% url "account:login" %}">Log-in</a>
     {% endif %}
     </span>
 </div>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">
+                {{ message|safe }}
+                <a href="#" class="close">x</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <div id="content">
     {% block content %}{% endblock %}
 </div>
