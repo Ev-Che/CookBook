@@ -7,8 +7,19 @@
     <p class="date">
         Published {{ recipe.publish }} by {{ recipe.author }}
     </p>
-    <img src="{{ recipe.photo.url }}" alt="">
+    {% if recipe.photo.url is not None %}
+        <img src="{{ recipe.photo.url }}" alt="">
+    {% endif %}
+
     {{ recipe.body|linebreaks }}
+
+    {% if is_fan %}
+        <a href="{% url 'cookbook:likes:dislike_recipe' recipe.id%}" class="dislike-button">Dislike</a>
+    {% else %}
+        <a href="{% url 'cookbook:likes:like_recipe' recipe.id%}" class="like-button">Like</a>
+    {% endif %}
+    <h3>Total likes: {{ total_likes }}</h3>
+
     {% if recipe.author == request.user %}
         <table>
         <tr>

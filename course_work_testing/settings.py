@@ -23,7 +23,9 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
 
     'cookbook.apps.CookbookConfig',
-    
+
+    'likes.apps.LikesConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

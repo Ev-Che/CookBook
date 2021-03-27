@@ -9,7 +9,9 @@
         <p class="date">
             Published {{ recipe.publish }} by {{ recipe.author }}
         </p>
-        <img src='{{ recipe.photo.url }}' class="photo">
+        {% if recipe.photo.url is not None %}
+            <img src='{{ recipe.photo.url }}' class="photo">
+        {% endif %}
         {{ recipe.body|truncatewords:30|linebreaks }}
     {% endfor %}
 

@@ -4,13 +4,16 @@
 
 {% block content %}
     <h1>Cookbook</h1>
-    <p>Добро пожаловать в вашу книгу!</p>
+    <p>Welcome to your cookbook!</p>
     {% for recipe in user_recipes %}
         <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
         <p class="date">
             Published {{ recipe.publish }}
         </p>
-        <img src='{{ recipe.photo.url }}' class="photo">
+        {% if recipe.photo.url is not None %}
+            <img src='{{ recipe.photo.url }}' class="photo">
+        {% endif %}
+
         {{ recipe.body|truncatewords:30|linebreaks }}
     {% endfor %}
 {% endblock %}

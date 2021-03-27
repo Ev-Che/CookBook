@@ -4,19 +4,23 @@
 
 {% block content %}
     {% if query %}
-        <h1>Posts containing "{{ query }}"</h1>
-        <h3>
-            {% with results.count as totat_resuts %}
-                Found {{ totat_resuts }} result{{ totat_resuts|pluralize }}
-            {% endwith %}
-        </h3>
-        {% for post in results %}
-            <img src="{{ post.photo.url }}" alt="">
-            <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
-            {{ post.body|truncatewords:5 }}
-        {% empty %}
+        {% if results %}
+            <h1>Posts containing "{{ query }}"</h1>
+            <h3>
+                {% with results.count as totat_resuts %}
+                    Found {{ totat_resuts }} result{{ totat_resuts|pluralize }}
+                {% endwith %}
+            </h3>
+            {% for post in results %}
+                {% if post.photo.url is not None %}
+                    <img src="{{ post.photo.url }}" alt="">
+                {% endif %}
+                <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+                {{ post.body|truncatewords:5 }}
+            {% endfor %}
+        {% else %}
             <p>There are no results for your query.</p>
-        {% endfor %}
+        {% endif %}
     {% else %}
         <h1>Search for posts</h1>
         <form action="." method="get">
